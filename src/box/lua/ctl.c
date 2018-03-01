@@ -39,6 +39,7 @@
 #include "lua/utils.h"
 
 #include "box/box.h"
+#include "box/iproto.h"
 
 static int
 lbox_ctl_wait_ro(struct lua_State *L)
@@ -64,9 +65,19 @@ lbox_ctl_wait_rw(struct lua_State *L)
 	return 0;
 }
 
+static int
+lbox_ctl_reset_stat(struct lua_State *L)
+{
+	(void)L;
+	box_reset_stat();
+	iproto_reset_stat();
+	return 0;
+}
+
 static const struct luaL_Reg lbox_ctl_lib[] = {
 	{"wait_ro", lbox_ctl_wait_ro},
 	{"wait_rw", lbox_ctl_wait_rw},
+	{"reset_stat", lbox_ctl_reset_stat},
 	{NULL, NULL}
 };
 

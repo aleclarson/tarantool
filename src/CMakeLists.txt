@@ -44,7 +44,6 @@ lua_source(lua_sources lua/pwd.lua)
 lua_source(lua_sources lua/trigger.lua)
 lua_source(lua_sources lua/table.lua)
 lua_source(lua_sources ../third_party/luafun/fun.lua)
-lua_source(lua_sources lua/httpc.lua)
 lua_source(lua_sources lua/iconv.lua)
 # LuaJIT jit.* library
 lua_source(lua_sources "${CMAKE_BINARY_DIR}/third_party/luajit/src/jit/bc.lua")
@@ -93,7 +92,6 @@ set (core_sources
      util.c
      random.c
      trigger.cc
-     http_parser.c
  )
 
 if (TARGET_OS_NETBSD)
@@ -141,7 +139,6 @@ add_library(crc32 STATIC
 set (server_sources
      find_path.c
      curl.c
-     httpc.c
      pickle.c
      cfg.c
      cpu_feature.c
@@ -163,7 +160,6 @@ set (server_sources
      lua/pickle.c
      lua/fio.c
      lua/crypto.c
-     lua/httpc.c
      ${lua_sources}
      ${PROJECT_SOURCE_DIR}/third_party/lua-yaml/lyaml.cc
      ${PROJECT_SOURCE_DIR}/third_party/lua-yaml/b64.c
